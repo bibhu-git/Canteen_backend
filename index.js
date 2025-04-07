@@ -13,7 +13,7 @@ const port = process.env.PORT || 3000;
 DBCONNECT();
 
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 app.use('/api/user',userRouter);
 app.use('/api/admin',adminRouter);
 app.use('/images',express.static("uploads"));
