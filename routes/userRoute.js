@@ -1,4 +1,4 @@
-import { Register,Login, userProfile, userData, DuePageData, specificData, changePassword} from "../controller/UserController.js";
+import { Register,Login, userProfile, changePassword, UserPendingAmount} from "../controller/UserController.js";
 import express from 'express';
 import authMiddleware from "../middleware/AuthMiddleware.js";
 import { isUser } from "../middleware/RoleMiddleware.js";
@@ -19,6 +19,8 @@ userRouter.post('/mealRequest/submit',authMiddleware,isUser, submitMealStatusReq
 userRouter.get('/meal/status',authMiddleware,isUser,currentMealStatus);
 
 //payment request
+userRouter.get('/payment/pending',authMiddleware,isUser,UserPendingAmount);
+
 const storage = multer.diskStorage({
     destination: "uploads",
     filename: (req, file, cb) => {

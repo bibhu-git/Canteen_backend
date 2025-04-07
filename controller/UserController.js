@@ -175,4 +175,17 @@ const specificData = async (req, res) => {
 
     }
 }
-export { Register, Login,changePassword ,userProfile, userData, DuePageData, specificData };
+
+const UserPendingAmount = async (req, res) => {
+    try {
+      const user = req.user;
+      if (!user) {
+        return res.json({ success: false, error: "User not found" });
+      }
+      const totalAmount = user.totalAmount;
+      res.json({ success: true, totalAmount: totalAmount });
+    } catch (error) {
+      return res.json({ success: false, error: "Internal Server error!" });
+    }
+  }
+export { Register, Login,changePassword ,userProfile, userData, DuePageData, specificData, UserPendingAmount};
